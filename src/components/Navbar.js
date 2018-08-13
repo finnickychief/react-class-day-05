@@ -9,20 +9,24 @@ class Navbar extends React.Component {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <a className="nav-link">
-                Home <span className="sr-only">(current)</span>
+              <a
+                className="nav-link"
+                style={{ cursor: 'pointer' }}
+                onClick={this.props.switchRoute.bind(this, 'viewBooks')}
+              >
+                View <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link">Features</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
+              <a
+                className="nav-link"
+                style={{ cursor: 'pointer' }}
+                onClick={this.props.switchRoute.bind(this, 'addBook')}
+              >
+                Add
+              </a>
             </li>
           </ul>
         </div>

@@ -39,6 +39,10 @@ class BookList extends React.Component {
     this.setState({ bookArray: newBookArray });
   }
 
+  switchRoute = route => {
+    this.setState({ route: route });
+  };
+
   render() {
     let element;
     switch (this.state.route) {
@@ -51,10 +55,12 @@ class BookList extends React.Component {
         break;
       }
     }
-
+    /*
+      Add a way for the AddBook element to re-route back to the BookList view after a book has been added.
+    */
     return (
       <div>
-        <Navbar />
+        <Navbar switchRoute={this.switchRoute} />
         {element}
       </div>
     );
