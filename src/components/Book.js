@@ -16,6 +16,12 @@ class Book extends React.Component {
           >
             Edit
           </button>
+          <button
+            className="btn btn-danger"
+            onClick={this.props.deleteBook.bind(this, book.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     );

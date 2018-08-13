@@ -75,12 +75,21 @@ class BookList extends React.Component {
     this.setState({ bookArray: updatedArray });
   };
 
+  /* Remove the book from the array based on the ID */
+  deleteBook = id => {
+    console.log(id);
+  };
+
   render() {
     let element;
     switch (this.state.route) {
       case 'viewBooks': {
         element = (
-          <Books bookArray={this.state.bookArray} editBook={this.editBook} />
+          <Books
+            bookArray={this.state.bookArray}
+            editBook={this.editBook}
+            deleteBook={this.deleteBook}
+          />
         );
         break;
       }
