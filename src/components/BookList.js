@@ -1,6 +1,7 @@
 import React from 'react';
 import Books from './Books';
 import AddBookForm from './AddBookForm';
+import Navbar from './Navbar';
 
 class BookList extends React.Component {
   constructor() {
@@ -51,7 +52,12 @@ class BookList extends React.Component {
       }
     }
 
-    return <div>{element}</div>;
+    return (
+      <div>
+        <Navbar />
+        {element}
+      </div>
+    );
   }
 }
 
