@@ -10,6 +10,12 @@ class Book extends React.Component {
           <h6 className="card-subtitle mb-2 text-muted">{book.author}</h6>
           <p className="card-text">{book.description}</p>
           <div className="card-footer">{book.price}</div>
+          <button
+            className="btn btn-warning"
+            onClick={this.props.editBook.bind(this, book.id)}
+          >
+            Edit
+          </button>
         </div>
       </div>
     );

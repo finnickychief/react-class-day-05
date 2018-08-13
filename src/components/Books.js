@@ -11,7 +11,7 @@ export default props => {
   return (
     <div className="grid-container" style={divStyle}>
       {props.bookArray.map((book, index) => (
-        <Book key={`book-${index}`} book={book} />
+        <Book key={`book-${index}`} book={book} editBook={props.editBook} />
       ))}
     </div>
   );

@@ -43,11 +43,17 @@ class BookList extends React.Component {
     this.setState({ route: route });
   };
 
+  editBook = id => {
+    this.setState({ route: 'editBook' });
+  };
+
   render() {
     let element;
     switch (this.state.route) {
       case 'viewBooks': {
-        element = <Books bookArray={this.state.bookArray} />;
+        element = (
+          <Books bookArray={this.state.bookArray} editBook={this.editBook} />
+        );
         break;
       }
       case 'addBook': {
