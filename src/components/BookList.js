@@ -57,15 +57,18 @@ class BookList extends React.Component {
 
   editBook = id => {
     // Grab the book that has been clicked on
-    const bookToUpdate = this.state.bookArray.filter(book => book.id === id)[0];
+    const index = this.state.bookArray.findIndex(book => book.id === id);
 
-    this.setState({ route: 'editBook', currentBook: bookToUpdate });
+    this.setState({
+      route: 'editBook',
+      currentBook: this.state.bookArray[index]
+    });
   };
 
   updateBook = updatedBook => {
     const updatedArray = this.state.bookArray;
 
-    // Find index takes a conditional to check against all array items and returns the index of the first one that matches the query.
+    // findIndex takes a conditional to check against all array items and returns the index of the first one that matches the query.
     const index = updatedArray.findIndex(book => book.id === updatedBook.id);
 
     // Change the item that was found to be the new book
@@ -77,7 +80,19 @@ class BookList extends React.Component {
 
   /* Remove the book from the array based on the ID */
   deleteBook = id => {
-    console.log(id);
+    // Get all the books that are NOT the one that we want to delete.
+    const newBooksArray = this.state.bookArray.filter(book => book.id !== id);
+
+    // 2 Alternates:
+    // const index = this.state.bookArray.findIndex(book => book.id === id);
+    // const newBooksArray = this.state.bookArray
+    //   .slice(0, index)
+    //   .concat(this.state.bookArray.slice(index + 1));
+
+    // const newBooksArray = this.state.bookArray;
+    // newBooksArray.splice(index, 1);
+
+    this.setState({ bookArray: newBooksArray });
   };
 
   render() {
