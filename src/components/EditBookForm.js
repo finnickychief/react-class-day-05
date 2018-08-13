@@ -1,48 +1,39 @@
 import React from 'react';
-import uuid from 'uuid';
 
-class AddBookForm extends React.Component {
+class EditBookForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: '',
-      author: '',
-      description: '',
-      price: ''
+      title: props.book.title,
+      author: props.book.author,
+      description: props.book.description,
+      price: props.book.price
     };
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  addBookHandler = e => {
+  editBookHandler = e => {
     e.preventDefault(); // Prevent form from submitting and refreshing the page.
-
-    // const newBook = {
-    //   title: this.state.title,
-    //   author: this.state.author,
-    //   description: this.state.description,
-    //   price: this.state.price
-    // };
 
     const { title, author, description, price } = this.state;
 
-    const newBook = {
-      id: uuid(),
+    const updatedBook = {
       title,
       author,
       description,
       price
     };
 
-    this.props.onSubmit(newBook);
+    this.props.onSubmit(updatedBook);
     this.props.switchRoute('viewBooks'); // Reroute back to viewBooks page
   };
 
   render() {
     return (
       <div className="container mx-auto w-50">
-        <form onSubmit={this.addBookHandler.bind(this)}>
+        <form onSubmit={this.editBookHandler.bind(this)}>
           <div className="form-group">
             <label>Title</label>
             <input
@@ -84,7 +75,7 @@ class AddBookForm extends React.Component {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Add Book
+            Edit Book
           </button>
         </form>
       </div>
@@ -92,4 +83,4 @@ class AddBookForm extends React.Component {
   }
 }
 
-export default AddBookForm;
+export default EditBookForm;

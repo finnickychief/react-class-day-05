@@ -1,7 +1,10 @@
 import React from 'react';
+import uuid from 'uuid';
+
 import Books from './Books';
 import AddBookForm from './AddBookForm';
 import Navbar from './Navbar';
+import EditBookForm from './EditBookForm';
 
 class BookList extends React.Component {
   constructor() {
@@ -11,25 +14,29 @@ class BookList extends React.Component {
     this.state = {
       bookArray: [
         {
+          id: uuid(),
           title: 'Harry Potter',
           description: 'Wizard School stuff',
           author: 'JK Rowling',
           price: '14.99'
         },
         {
+          id: uuid(),
           title: 'Name of the Wind',
           description: 'Edgy Wizard school stuff',
           author: 'Patrick Rothfuss',
           price: '12.50'
         },
         {
+          id: uuid(),
           title: 'Wheel of Time',
           description: 'A few High fantasy novels',
           author: 'Robert Jordan',
           price: '19.99'
         }
       ],
-      route: 'viewBooks'
+      route: 'viewBooks',
+      currentBook: null
     };
   }
 
@@ -43,8 +50,18 @@ class BookList extends React.Component {
     this.setState({ route: route });
   };
 
+  updateBook = book => {};
+
+  /* 
+    Create an EditBookForm component - This will mostly be a copy of our AddBookForm
+    Make your page reroute to it after the edit button in any book is clicked
+  */
+
   editBook = id => {
-    this.setState({ route: 'editBook' });
+    // Grab the book that has been clicked on
+    const bookToUpdate = this.state.bookArray.filter(book => book.id === id)[0];
+
+    this.setState({ route: 'editBook', currentBook: bookToUpdate });
   };
 
   render() {
@@ -61,6 +78,16 @@ class BookList extends React.Component {
           <AddBookForm
             onSubmit={this.addBook.bind(this)}
             switchRoute={this.switchRoute}
+          />
+        );
+        break;
+      }
+      case 'editBook': {
+        element = (
+          <EditBookForm
+            onSubmit={this.updateBook.bind(this)}
+            switchRoute={this.switchRoute}
+            book={this.state.currentBook}
           />
         );
         break;
