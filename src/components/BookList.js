@@ -51,12 +51,18 @@ class BookList extends React.Component {
         break;
       }
       case 'addBook': {
-        element = <AddBookForm onSubmit={this.addBook.bind(this)} />;
+        element = (
+          <AddBookForm
+            onSubmit={this.addBook.bind(this)}
+            switchRoute={this.switchRoute}
+          />
+        );
         break;
       }
     }
     /*
-      Add a way for the AddBook element to re-route back to the BookList view after a book has been added.
+      Add a way for the AddBook element to re-route back to 
+      the BookList view after a book has been added.
     */
     return (
       <div>

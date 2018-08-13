@@ -14,7 +14,7 @@ class AddBookForm extends React.Component {
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  addBookHandler(e) {
+  addBookHandler = e => {
     e.preventDefault(); // Prevent form from submitting and refreshing the page.
 
     // const newBook = {
@@ -34,7 +34,8 @@ class AddBookForm extends React.Component {
     };
 
     this.props.onSubmit(newBook);
-  }
+    this.props.switchRoute('viewBooks'); // Reroute back to viewBooks page
+  };
 
   render() {
     return (
