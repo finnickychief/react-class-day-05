@@ -50,8 +50,6 @@ class BookList extends React.Component {
     this.setState({ route: route });
   };
 
-  updateBook = book => {};
-
   /* 
     Create an EditBookForm component - This will mostly be a copy of our AddBookForm
     Make your page reroute to it after the edit button in any book is clicked
@@ -62,6 +60,19 @@ class BookList extends React.Component {
     const bookToUpdate = this.state.bookArray.filter(book => book.id === id)[0];
 
     this.setState({ route: 'editBook', currentBook: bookToUpdate });
+  };
+
+  updateBook = updatedBook => {
+    const updatedArray = this.state.bookArray;
+
+    // Find index takes a conditional to check against all array items and returns the index of the first one that matches the query.
+    const index = updatedArray.findIndex(book => book.id === updatedBook.id);
+
+    // Change the item that was found to be the new book
+    updatedArray[index] = updatedBook;
+
+    // Update the bookArray and force a rerender on the page.
+    this.setState({ bookArray: updatedArray });
   };
 
   render() {

@@ -5,6 +5,7 @@ class EditBookForm extends React.Component {
     super(props);
 
     this.state = {
+      id: props.book.id,
       title: props.book.title,
       author: props.book.author,
       description: props.book.description,
@@ -17,9 +18,10 @@ class EditBookForm extends React.Component {
   editBookHandler = e => {
     e.preventDefault(); // Prevent form from submitting and refreshing the page.
 
-    const { title, author, description, price } = this.state;
+    const { id, title, author, description, price } = this.state;
 
     const updatedBook = {
+      id,
       title,
       author,
       description,
